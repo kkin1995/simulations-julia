@@ -2,8 +2,12 @@
 
 ## Simple Pendulum
 
-![](simple_pendulum_animation.gif)
+![](media/simple_pendulum_animation.gif)
 
 ## Damped Simple Pendulum
 
-![](damped_simple_pendulum_animation.gif)
+![](media/damped_simple_pendulum_animation.gif)
+
+## Spring Pendulum
+
+![](media/spring_pendulum_animation.gif)
