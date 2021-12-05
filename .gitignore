@@ -1,6 +1,5 @@
 # Images / Video
 *.png
-*.gif
 
 # OS
 .DS_Store
