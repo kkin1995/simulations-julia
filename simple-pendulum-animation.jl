@@ -1,8 +1,7 @@
-include("./damped-simple-pendulum.jl")
-using .DampedSimplePendulumSimulation
+include("simple-pendulum.jl")
 using Plots
 
-time, theta, _, _ = DampedSimplePendulum(45, alpha = 0.5, cycles = 10, step_size = 0.1)
+time, theta, _, _ = SimplePendulum(45, step_size = 0.1)
 
 xs = sin.(theta)
 ys = -cos.(theta)
@@ -21,4 +20,4 @@ no_of_steps = length(time)
     Plots.frame(anim)
 end
 
-gif(anim, "damped_simple_pendulum_animation.gif", fps = 120)
+gif(anim, "simple_pendulum_animation.gif", fps = 120)

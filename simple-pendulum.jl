@@ -1,7 +1,3 @@
-module SimplePendulumSimulation
-
-export SimplePendulum, omegaDot
-
 using Plots
 
 function SimplePendulum(initialAngle; cycles = 10, step_size = 0.001)
@@ -47,11 +43,36 @@ function omegaDot(theta, g = 9.8, L = 1)
     return - (g/L) * sin(theta)
 end
 
+function calculateEnergy(initialAngle, m = 1, g = 9.8, L = 1, cycles = 10, step_size = 0.001)
+    time, theta, thetadot, _ = SimplePendulum(initialAngle, cycles = cycles, step_size = step_size)
+    kineticEnergy = (1/2) * m * L^2 * thetadot.^2
+    potentialEnergy = m * g * L * (1 .- cos.(theta))
+    energy = kineticEnergy .+ potentialEnergy
+    energy_plot = plot(time, kineticEnergy, label = "Kinetic Energy")
+    plot!(time, potentialEnergy, label = "Potential Energy")
+    plot!(time, energy, label = "Energy")
+    xlabel!("Time")
+    ylabel!("Energy")
+    return kineticEnergy, potentialEnergy, energy, energy_plot
+end
+
+function phase_plot(initialAngles)
+    plot_list = Any[]
+    for initialAngle in initialAngles
+        println(initialAngle)
+        _, theta, omega, _ = SimplePendulum(initialAngle)
+        title = "Phase Space Plot"
+        label = string(initialAngle) * " degress"
+        push!(plot_list, plot(theta, omega, title = title, label = label))
+    end
+    xlabel!("Theta")
+    ylabel!("Theta Dot")
+    return plot_list
+end
+
 
 if abspath(PROGRAM_FILE) == @__FILE__
     initialAngle = parse(Float64, ARGS[1])
     theta, omega, plt = SimplePendulum(initialAngle)
     savefig(plt, "plot.png")
-end
-
 end

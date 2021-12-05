@@ -1,5 +1,3 @@
-module DoublePendulumSimulation
-
 using Plots
 
 function DoublePendulum(initialAngle_1, initialAngle_2; m1 = 1, m2 = 1, L1 = 1, L2 = 1, g = 9.8, cycles = 10, step_size = 0.1)
@@ -73,7 +71,7 @@ function ω2dot(ω1dot, θ1, θ2, ω1, m2, L1, L2, g)
 end
 
 
-#if abspath(PROGRAM_FILE) == @__FILE__
+if abspath(PROGRAM_FILE) == @__FILE__
     #initialAngle_1 = parse(Float64, ARGS[1])
     #initialAngle_2 = parse(Float64, ARGS[2])
     initialAngle_1 = 0.0
@@ -85,6 +83,4 @@ end
     p4 = plot(time, ω2)
     plt = plot(p1, p2, p3, p4)
     savefig(plt, "plot.png")
-#end
-
 end

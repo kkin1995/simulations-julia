@@ -1,7 +1,3 @@
-module DampedSimplePendulumSimulation
-
-export DampedSimplePendulum, omegaDot
-
 using Plots
 
 function DampedSimplePendulum(initialAngle; alpha = 0.1, cycles = 10, step_size = 0.001)
@@ -52,6 +48,4 @@ if abspath(PROGRAM_FILE) == @__FILE__
     initialAngle = parse(Float64, ARGS[1])
     _, theta, omega, plt = DampedSimplePendulum(initialAngle)
     savefig(plt, "plot.png")
-end
-
 end

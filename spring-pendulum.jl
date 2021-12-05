@@ -1,7 +1,3 @@
-module SpringPendulumSimulation
-
-export SpringPendulum, omegaDot, vxdot
-
 using Plots
 
 function SpringPendulum(initialAngle, initialExtension; l0 = 1, k = 1, m = 1, g = 9.8, cycles = 10, step_size = 0.01)
@@ -74,8 +70,9 @@ end
 
 if abspath(PROGRAM_FILE) == @__FILE__
     initialAngle = 10
-    initialExtension = 2
-    time, x, vx, θ, ω = SpringPendulum(initialAngle, initialExtension)
+    initialExtension = 1
+    l0 = 1
+    time, x, vx, θ, ω = SpringPendulum(initialAngle, initialExtension, l0 = l0, k = 2, step_size = 0.5, cycles = 1000)
     p1 = plot(time, x, xlabel = "time", ylabel = "x")
     p2 = plot(time, vx, xlabel = "time", ylabel = "vx")
     p3 = plot(time, θ, xlabel = "time", ylabel = "θ")
@@ -84,6 +81,4 @@ if abspath(PROGRAM_FILE) == @__FILE__
     p6 = plot(x, vx, xlabel = "x", ylabel = "vx")
     plt = plot(p1, p2, p3, p4, p5, p6)
     savefig(plt, "plot.png")
-end
-
 end
