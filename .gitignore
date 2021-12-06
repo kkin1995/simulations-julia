@@ -1,5 +1,9 @@
 # Images / Video
 *.png
 
+
 # OS
 .DS_Store
+
+# Data
+*.csv
